@@ -36,6 +36,10 @@ class GameView extends StatelessWidget {
             loadingBuilder: (context) => const GameBackground(),
             backgroundBuilder: (context) => const GameBackground(),
             gameFactory: () => SuperDashGame(
+              cameraViewport: Vector2(
+                MediaQuery.of(context).size.width,
+                MediaQuery.of(context).size.height,
+              ),
               gameBloc: context.read<GameBloc>(),
               audioController: context.read<AudioController>(),
             ),

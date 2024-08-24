@@ -54,6 +54,10 @@ class _MapTesterViewState extends State<MapTesterView> {
         setState(() {
           rootPath = directory;
           game = SuperDashGame(
+            cameraViewport: Vector2(
+              MediaQuery.of(context).size.width,
+              MediaQuery.of(context).size.height,
+            ),
             gameBloc: GameBloc(),
             customBundle: FileSystemAssetBundle(directory),
             audioController: context.read(),
@@ -64,6 +68,10 @@ class _MapTesterViewState extends State<MapTesterView> {
     } else {
       setState(() {
         game = SuperDashGame(
+          cameraViewport: Vector2(
+            MediaQuery.of(context).size.width,
+            MediaQuery.of(context).size.height,
+          ),
           gameBloc: GameBloc(),
           audioController: context.read(),
           inMapTester: true,
@@ -76,6 +84,10 @@ class _MapTesterViewState extends State<MapTesterView> {
     late SuperDashGame newGame;
     if (!kIsWeb && Platform.isMacOS) {
       newGame = SuperDashGame(
+        cameraViewport: Vector2(
+          MediaQuery.of(context).size.width,
+          MediaQuery.of(context).size.height,
+        ),
         gameBloc: GameBloc(),
         audioController: context.read(),
         customBundle: FileSystemAssetBundle(rootPath!),
@@ -83,6 +95,10 @@ class _MapTesterViewState extends State<MapTesterView> {
       );
     } else {
       newGame = SuperDashGame(
+        cameraViewport: Vector2(
+          MediaQuery.of(context).size.width,
+          MediaQuery.of(context).size.height,
+        ),
         gameBloc: GameBloc(),
         audioController: context.read(),
         inMapTester: true,

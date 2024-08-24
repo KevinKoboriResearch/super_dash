@@ -35,6 +35,7 @@ class _TestSuperDashGame extends SuperDashGame {
   _TestSuperDashGame({
     required super.gameBloc,
     required super.audioController,
+    required super.cameraViewport,
     this.spawnObects = const [],
     this.respawnObects = const [],
   });
@@ -154,6 +155,7 @@ void main() {
 
     _TestSuperDashGame createGame() {
       return _TestSuperDashGame(
+        cameraViewport: Vector2(592, 1024),
         gameBloc: gameBloc,
         audioController: audioController,
         spawnObects: [

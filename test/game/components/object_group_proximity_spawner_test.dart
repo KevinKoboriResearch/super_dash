@@ -29,6 +29,7 @@ class _MockObjectGroup extends Mock implements ObjectGroup {}
 class _TestSuperDashGame extends SuperDashGame {
   _TestSuperDashGame({this.layerObjects = const []})
       : super(
+          cameraViewport: Vector2(592, 1024),
           gameBloc: _MockGameBloc(),
           audioController: _MockAudioController(),
         );

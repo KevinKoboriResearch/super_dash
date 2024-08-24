@@ -30,6 +30,7 @@ class SuperDashGame extends LeapGame
   SuperDashGame({
     required this.gameBloc,
     required this.audioController,
+    required this.cameraViewport,
     this.customBundle,
     this.inMapTester = false,
   }) : super(
@@ -46,12 +47,12 @@ class SuperDashGame extends LeapGame
           ),
         );
 
-  static final _cameraViewport = Vector2(592, 1024);
+  final Vector2 cameraViewport;
   static const prefix = 'assets/map/';
   static const _sections = [
-    'flutter_runnergame_map_A.tmx',
-    'flutter_runnergame_map_B.tmx',
     'flutter_runnergame_map_C.tmx',
+    'flutter_runnergame_map_B.tmx',
+    'flutter_runnergame_map_A.tmx',
   ];
   static const _sectionsBackgroundColor = [
     (Color(0xFFDADEF6), Color(0xFFEAF0E3)),
@@ -120,8 +121,8 @@ class SuperDashGame extends LeapGame
     }
 
     camera = CameraComponent.withFixedResolution(
-      width: _cameraViewport.x,
-      height: _cameraViewport.y,
+      width: cameraViewport.x,
+      height: cameraViewport.y,
     )..world = world;
 
     images = Images(
@@ -144,7 +145,7 @@ class SuperDashGame extends LeapGame
 
     final player = Player(
       levelSize: leapMap.tiledMap.size.clone(),
-      cameraViewport: _cameraViewport,
+      cameraViewport: cameraViewport,
     );
     unawaited(
       world.addAll([player]),
@@ -232,7 +233,7 @@ class SuperDashGame extends LeapGame
         }
         final newPlayer = Player(
           levelSize: leapMap.tiledMap.size.clone(),
-          cameraViewport: _cameraViewport,
+          cameraViewport: cameraViewport,
         );
         await world.add(newPlayer);
 
@@ -268,13 +269,13 @@ class SuperDashGame extends LeapGame
   Future<void> _addSpawners() async {
     await addAll([
       ObjectGroupProximityBuilder<Player>(
-        proximity: _cameraViewport.x * 1.5,
+        proximity: cameraViewport.x * 1.5,
         tileLayerName: 'items',
         tileset: itemsTileset,
         componentBuilder: Item.new,
       ),
       ObjectGroupProximityBuilder<Player>(
-        proximity: _cameraViewport.x * 1.5,
+        proximity: cameraViewport.x * 1.5,
         tileLayerName: 'enemies',
         tileset: enemiesTileset,
         componentBuilder: Enemy.new,
@@ -352,7 +353,7 @@ class SuperDashGame extends LeapGame
 
       final anchor = PlayerCameraAnchor(
         levelSize: leapMap.tiledMap.size.clone(),
-        cameraViewport: _cameraViewport,
+        cameraViewport: cameraViewport,
       );
       cameraDebugger.add(anchor);
       camera.follow(anchor);

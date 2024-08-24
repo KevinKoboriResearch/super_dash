@@ -29,6 +29,7 @@ void main() {
 
     SuperDashGame createGame() {
       return SuperDashGame(
+        cameraViewport: Vector2(592, 1024),
         gameBloc: gameBloc,
         audioController: audioController,
       );
