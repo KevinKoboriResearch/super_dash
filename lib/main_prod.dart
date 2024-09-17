@@ -29,6 +29,7 @@ void main() async {
   await audio.initialize();
 
   final share = ShareController(
+    // TODO(Kevin): put our own domain here
     gameUrl: 'https://superdash.flutter.dev/',
   );
 

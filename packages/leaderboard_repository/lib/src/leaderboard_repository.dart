@@ -37,13 +37,16 @@ class LeaderboardRepository {
   Future<void> addLeaderboardEntry(
     LeaderboardEntryData entry,
   ) async {
-    final leaderboard = await _fetchLeaderboardSortedByScore();
-    if (leaderboard.length < 10) {
-      await _saveScore(entry);
-    } else {
-      final tenthPositionScore = leaderboard[9].score;
-      if (entry.score > tenthPositionScore) {
+    // TODO(Kevin): add a high score verification to prevent api calls
+    if (entry.score > 10000) {
+      final leaderboard = await _fetchLeaderboardSortedByScore();
+      if (leaderboard.length < 10) {
         await _saveScore(entry);
+      } else {
+        final tenthPositionScore = leaderboard[9].score;
+        if (entry.score > tenthPositionScore) {
+          await _saveScore(entry);
+        }
       }
     }
   }

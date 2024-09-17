@@ -50,9 +50,9 @@ class SuperDashGame extends LeapGame
   final Vector2 cameraViewport;
   static const prefix = 'assets/map/';
   static const _sections = [
-    'flutter_runnergame_map_C.tmx',
-    'flutter_runnergame_map_B.tmx',
     'flutter_runnergame_map_A.tmx',
+    'flutter_runnergame_map_B.tmx',
+    'flutter_runnergame_map_C.tmx',
   ];
   static const _sectionsBackgroundColor = [
     (Color(0xFFDADEF6), Color(0xFFEAF0E3)),
