@@ -67,7 +67,7 @@ void main() async {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      appSwitcher.setApp(EndlessRunnerApp());
+                      // appSwitcher.setApp(EndlessRunnerApp());
                     },
                     child: const Text('Endless Runner'),
                   ),
