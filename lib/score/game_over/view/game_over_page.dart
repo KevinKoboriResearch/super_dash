@@ -1,8 +1,10 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:super_dash/app_switcher.dart';
 import 'package:super_dash/game/game.dart';
 import 'package:super_dash/game_intro/game_intro.dart';
 import 'package:super_dash/gen/assets.gen.dart';
@@ -24,6 +26,7 @@ class GameOverPage extends StatelessWidget {
     final l10n = context.l10n;
     final textTheme = Theme.of(context).textTheme;
     const titleColor = Color(0xFF18274C);
+    final authenticationRepository = context.read<AuthenticationRepository>();
 
     return PageWithBackground(
       background: const GameBackground(),
@@ -82,6 +85,13 @@ class GameOverPage extends StatelessWidget {
                   Color(0xFF79AACA),
                 ],
               ),
+            ),
+            const SizedBox(height: 24),
+            GameElevatedButton(
+              label: 'Back To Menu', // TODO(Kevin): put it into l10n
+              onPressed: () {
+                AppSwitcher.instance.backToMenu(authenticationRepository);
+              },
             ),
             const Spacer(flex: 40),
             const BottomBar(),

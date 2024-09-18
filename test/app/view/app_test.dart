@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:super_dash/app/app.dart';
+import 'package:super_dash/app_switcher.dart';
 import 'package:super_dash/audio/audio.dart';
 import 'package:super_dash/game_intro/game_intro.dart';
 import 'package:super_dash/settings/settings.dart';
@@ -50,6 +51,8 @@ void main() {
           shareController: shareController,
           authenticationRepository: authenticationRepository,
           leaderboardRepository: leaderboardRepository,
+          // TODO(Kevin): create backToMenu Tests
+          backToMenu: () => AppSwitcher.instance.backToMenu(authenticationRepository),
         ),
       );
       expect(find.byType(GameIntroPage), findsOneWidget);

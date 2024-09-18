@@ -6,19 +6,19 @@ import 'package:flutter/widgets.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
-class SuperDashAppLifecycleObserver extends StatefulWidget {
-  const SuperDashAppLifecycleObserver({required this.child, super.key});
+class SDAppLifecycleObserver extends StatefulWidget {
+  const SDAppLifecycleObserver({required this.child, super.key});
 
   final Widget child;
 
   @override
-  State<SuperDashAppLifecycleObserver> createState() =>
-      SuperDashAppLifecycleObserverState();
+  State<SDAppLifecycleObserver> createState() =>
+      SDAppLifecycleObserverState();
 }
 
 @visibleForTesting
-class SuperDashAppLifecycleObserverState
-    extends State<SuperDashAppLifecycleObserver> with WidgetsBindingObserver {
+class SDAppLifecycleObserverState
+    extends State<SDAppLifecycleObserver> with WidgetsBindingObserver {
   static final _log = Logger('AppLifecycleObserver');
 
   final ValueNotifier<AppLifecycleState> lifecycleListenable =

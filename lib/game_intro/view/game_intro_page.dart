@@ -9,7 +9,12 @@ import 'package:super_dash/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class GameIntroPage extends StatefulWidget {
-  const GameIntroPage({super.key});
+  const GameIntroPage({
+    required this.backToMenu,
+    super.key,
+  });
+
+  final VoidCallback backToMenu;
 
   @override
   State<GameIntroPage> createState() => _GameIntroPageState();
@@ -41,7 +46,7 @@ class _GameIntroPageState extends State<GameIntroPage> {
         ),
         child: isMobileWeb
             ? _MobileWebNotAvailableIntroPage(onDownload: _onDownload)
-            : const _IntroPage(),
+            : _IntroPage(backToMenu: widget.backToMenu),
       ),
     );
   }
@@ -53,12 +58,17 @@ class _GameIntroPageState extends State<GameIntroPage> {
 }
 
 class _IntroPage extends StatelessWidget {
-  const _IntroPage();
+  const _IntroPage({
+    required this.backToMenu,
+  });
+
+  final VoidCallback backToMenu;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final theme = Theme.of(context);
+
     return Center(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 390),
@@ -84,6 +94,11 @@ class _IntroPage extends StatelessWidget {
             GameElevatedButton(
               label: l10n.gameIntroPagePlayButtonText,
               onPressed: () => Navigator.of(context).push(Game.route()),
+            ),
+            const SizedBox(height: 16),
+            GameElevatedButton(
+              label: 'Back To Menu', // TODO(Kevin): put it into l10n
+              onPressed: backToMenu,
             ),
             const Spacer(),
             const Row(

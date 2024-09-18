@@ -1,8 +1,10 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:super_dash/app_switcher.dart';
 import 'package:super_dash/l10n/l10n.dart';
 import 'package:super_dash/score/score.dart';
 import 'package:super_dash/share/share.dart';
@@ -69,6 +71,8 @@ class MobileButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final authenticationRepository = context.read<AuthenticationRepository>();
+
     return Column(
       children: [
         GameElevatedButton.icon(
@@ -87,6 +91,12 @@ class MobileButtons extends StatelessWidget {
         const _PlayAgainButton(),
         const SizedBox(height: 24),
         const _SeeTheRankingButton(),
+        const SizedBox(height: 24),
+        GameElevatedButton(
+          label: 'Back To Menu', // TODO(Kevin): put it into l10n
+          onPressed: () =>
+              AppSwitcher.instance.backToMenu(authenticationRepository),
+        ),
       ],
     );
   }

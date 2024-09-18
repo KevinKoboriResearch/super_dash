@@ -5,16 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 
-class AppSwitcher with ChangeNotifier {
-  final ValueNotifier<Widget> _app = ValueNotifier<Widget>(const SizedBox());
-
-  ValueNotifier<Widget> get app => _app;
-
-  Future<void> setApp(Widget newApp) async {
-    app.value = newApp;
-  }
-}
-
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
 

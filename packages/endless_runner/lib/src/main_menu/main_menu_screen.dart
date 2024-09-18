@@ -39,6 +39,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
     final palette = context.watch<Palette>();
     final settingsController = context.watch<ERSettingsController>();
     final audioController = context.watch<ERAudioController>();
+    final backToMenu = context.watch<VoidCallback>();
 
     return Scaffold(
       backgroundColor: palette.backgroundMain.color,
@@ -85,6 +86,13 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
               onPressed: () =>
                   Navigator.of(context).push(SettingsScreen.route()),
               child: const Text('Settings'),
+            ),
+            MainMenuScreen._gap,
+            WobblyButton(
+              onPressed: () {
+               backToMenu.call();
+              },
+              child: const Text('Back to Menu'),
             ),
             MainMenuScreen._gap,
             Padding(
