@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:endless_runner/endless_runner.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:super_dash/app/app.dart';
 import 'package:super_dash/audio/audio.dart';
@@ -67,7 +67,7 @@ void main() async {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // appSwitcher.setApp(EndlessRunnerApp());
+                      appSwitcher.setApp(const EndlessRunnerApp());
                     },
                     child: const Text('Endless Runner'),
                   ),
@@ -77,7 +77,7 @@ void main() async {
           ),
         );
 
-        appSwitcher.setApp(menu);
+        await appSwitcher.setApp(menu);
 
         return ValueListenableBuilder<Widget>(
           valueListenable: appSwitcher.app,

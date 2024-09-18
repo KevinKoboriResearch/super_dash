@@ -10,7 +10,7 @@ environment:
 dependencies:
   app_ui:
     path: packages/app_ui
-  audioplayers: ^5.2.0
+  audioplayers: ^6.0.0
   authentication_repository:
     path: packages/authentication_repository
   bloc: ^8.1.2
@@ -44,6 +44,8 @@ dependencies:
   share_plus: ^7.2.1
   shared_preferences: ^2.2.2
   url_launcher: ^6.2.1
+  endless_runner:
+    path: packages/endless_runner/
 
 dev_dependencies:
   bloc_test: ^9.1.2
@@ -78,6 +80,17 @@ flutter:
     - assets/map/objects/
     - assets/music/
     - assets/sfx/
+    - assets/images/endless_runner/
+    - assets/images/endless_runner/dash/
+    - assets/images/endless_runner/enemies/
+    - assets/images/endless_runner/scenery/
+    - assets/music/endless_runner/
+    - assets/sfx/endless_runner/
+
+  fonts:
+    - family: Press Start 2P
+      fonts:
+        - asset: assets/fonts/endless_runner/Press_Start_2P/PressStart2P-Regular.ttf
 
 flutter_launcher_icons:
   android: true
