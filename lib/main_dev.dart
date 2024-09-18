@@ -32,11 +32,9 @@ void main() async {
         await AppSwitcher.initialize(authenticationRepository);
 
         await AppSwitcher.instance.setApp(
-          MenuScreen(
-            startSuperDashApp: () =>
-                startSuperDashApp(authenticationRepository),
-            startEndlessRunnerApp: () =>
-                startEndlessRunnerApp(authenticationRepository),
+          const MenuScreen(
+            startSuperDashApp: startSuperDashApp,
+            startEndlessRunnerApp: startEndlessRunnerApp,
           ),
         );
 
@@ -51,9 +49,7 @@ void main() async {
   );
 }
 
-void startSuperDashApp(
-  AuthenticationRepository authenticationRepository,
-) {
+void startSuperDashApp() {
   final settings = SettingsController(
     persistence: LocalStorageSettingsPersistence(),
   );
@@ -73,10 +69,9 @@ void startSuperDashApp(
       audioController: audio,
       settingsController: settings,
       shareController: share,
-      authenticationRepository: authenticationRepository,
+      authenticationRepository: AppSwitcher.authenticationRepository,
       leaderboardRepository: leaderboardRepository,
-      backToMenu: () =>
-          AppSwitcher.instance.backToMenu(authenticationRepository),
+      backToMenu: AppSwitcher.instance.backToMenu,
     ),
   );
 }

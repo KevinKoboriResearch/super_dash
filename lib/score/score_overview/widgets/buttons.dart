@@ -95,7 +95,7 @@ class MobileButtons extends StatelessWidget {
         GameElevatedButton(
           label: 'Back To Menu', // TODO(Kevin): put it into l10n
           onPressed: () =>
-              AppSwitcher.instance.backToMenu(authenticationRepository),
+              AppSwitcher.instance.backToMenu(),
         ),
       ],
     );

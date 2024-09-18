@@ -52,7 +52,7 @@ void main() {
           authenticationRepository: authenticationRepository,
           leaderboardRepository: leaderboardRepository,
           // TODO(Kevin): create backToMenu Tests
-          backToMenu: () => AppSwitcher.instance.backToMenu(authenticationRepository),
+          backToMenu: AppSwitcher.instance.backToMenu,
         ),
       );
       expect(find.byType(GameIntroPage), findsOneWidget);

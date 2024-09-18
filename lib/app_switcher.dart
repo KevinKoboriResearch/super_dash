@@ -4,13 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:super_dash/main_prod.dart';
 import 'package:super_dash/menu_screen.dart';
 
-void startEndlessRunnerApp(
-  AuthenticationRepository authenticationRepository,
-) {
+void startEndlessRunnerApp() {
   AppSwitcher.instance.setApp(
     EndlessRunnerApp(
-      backToMenu: () =>
-          AppSwitcher.instance.backToMenu(authenticationRepository),
+      backToMenu: AppSwitcher.instance.backToMenu,
     ),
   );
 }
@@ -62,13 +59,10 @@ class AppSwitcher {
   }
 
   // Método para voltar ao menu
-  Future<void> backToMenu(
-    AuthenticationRepository authenticationRepository,
-  ) async {
-    app.value = MenuScreen(
-      startSuperDashApp: () => startSuperDashApp(authenticationRepository),
-      startEndlessRunnerApp: () =>
-          startEndlessRunnerApp(authenticationRepository),
+  Future<void> backToMenu() async {
+    app.value = const MenuScreen(
+      startSuperDashApp: startSuperDashApp,
+      startEndlessRunnerApp: startEndlessRunnerApp,
     );
   }
 }
