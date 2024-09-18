@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:super_dash/app/app.dart';
@@ -43,12 +44,46 @@ void main() async {
           firebaseAuth: firebaseAuth,
         );
 
-        return App(
-          audioController: audio,
-          settingsController: settings,
-          shareController: share,
-          authenticationRepository: authenticationRepository,
-          leaderboardRepository: leaderboardRepository,
+        final appSwitcher = AppSwitcher();
+
+        final menu = MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      appSwitcher.setApp(
+                        SuperDashApp(
+                          audioController: audio,
+                          settingsController: settings,
+                          shareController: share,
+                          authenticationRepository: authenticationRepository,
+                          leaderboardRepository: leaderboardRepository,
+                        ),
+                      );
+                    },
+                    child: const Text('Super Dash'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      appSwitcher.setApp(EndlessRunnerApp());
+                    },
+                    child: const Text('Endless Runner'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+
+        appSwitcher.setApp(menu);
+
+        return ValueListenableBuilder<Widget>(
+          valueListenable: appSwitcher.app,
+          builder: (_, value, __) {
+            return value;
+          },
         );
       },
     ),

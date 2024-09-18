@@ -44,7 +44,7 @@ void main() {
 
     testWidgets('renders GameIntroPage', (tester) async {
       await tester.pumpWidget(
-        App(
+        SuperDashApp(
           audioController: audioController,
           settingsController: settingsController,
           shareController: shareController,

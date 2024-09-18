@@ -43,7 +43,7 @@ void main() async {
           firebaseAuth: firebaseAuth,
         );
 
-        return App(
+        return SuperDashApp(
           isTesting: true,
           audioController: audio,
           settingsController: settings,

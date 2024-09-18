@@ -10,7 +10,7 @@
       "request": "launch",
       "program": "lib/main_dev.dart",
       "args": ["-d", "chrome", "--web-renderer", "canvaskit"],
-      "noDebug": true,
+      // "noDebug": true,
     },
     // {
     //   "name": "Launch game",
