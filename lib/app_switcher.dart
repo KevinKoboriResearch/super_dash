@@ -12,32 +12,31 @@ void startEndlessRunnerApp() {
   );
 }
 
-/// A singleton class representing the Wallet module in the application.
-/// It initializes and provides access to controllers and pages related to the Wallet feature.
+/// A singleton class representing the App Switcher in the application.
 class AppSwitcher {
   // Private constructor for internal use to ensure singleton pattern.
   AppSwitcher._internal();
 
-  // The single instance of WalletModule.
+  // The single instance of AppSwitcher.
   static final AppSwitcher _instance = AppSwitcher._internal();
 
-  /// Gets the singleton instance of WalletModule.
+  /// Gets the singleton instance of AppSwitcher.
   /// Throws an exception if called before the module is initialized.
   static AppSwitcher get instance {
     if (!_hasInit) {
       throw Exception(
-        '''WalletModule must be initialized before use. Call WalletModule.init() on main() { WalletModule.init(); }.''',
+        '''AppSwitcher must be initialized before use. Call AppSwitcher.init() on main() { AppSwitcher.init(); }.''',
       );
     }
     return _instance;
   }
 
-  // Flag to indicate whether the WalletModule has been initialized.
+  // Flag to indicate whether the AppSwitcher has been initialized.
   static bool _hasInit = false;
 
   static late AuthenticationRepository authenticationRepository;
 
-  /// Initializes the WalletModule.
+  /// Initializes the AppSwitcher.
   /// It initializes necessary controllers and sets the _hasInit flag to true.
   /// This method should be called before accessing the instance.
   static Future<void> initialize(

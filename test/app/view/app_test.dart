@@ -36,6 +36,7 @@ void main() {
       shareController = _MockShareController();
       authenticationRepository = _MockAuthenticationRepository();
       leaderboardRepository = _MockLeaderboardRepository();
+      AppSwitcher.initialize(authenticationRepository);
 
       when(() => settingsController.muted).thenReturn(ValueNotifier(true));
       when(authenticationRepository.signInAnonymously).thenAnswer(
