@@ -36,6 +36,7 @@ dependencies:
     path: packages/leaderboard_repository
   # leap: ^0.2.1
   leap: ^0.7.0
+  logger: ^2.4.0
   logging: ^1.2.0
   ordered_set: ^5.0.2
   path: ^1.8.3

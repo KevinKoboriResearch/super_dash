@@ -22,6 +22,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  const menu = MenuScreen(
+    startSuperDashApp: startSuperDashApp,
+    startEndlessRunnerApp: startEndlessRunnerApp,
+  );
+
   unawaited(
     bootstrap(
       (firebaseAuth) async {
@@ -31,17 +36,17 @@ void main() async {
 
         await AppSwitcher.initialize(authenticationRepository);
 
-        await AppSwitcher.instance.setApp(
-          const MenuScreen(
-            startSuperDashApp: startSuperDashApp,
-            startEndlessRunnerApp: startEndlessRunnerApp,
-          ),
-        );
+        await AppSwitcher.instance.setApp(menu);
 
         return ValueListenableBuilder<Widget>(
           valueListenable: AppSwitcher.instance.app,
           builder: (_, value, __) {
-            return value;
+            return
+                // PopScope(
+                //   onPopInvokedWithResult: (_, __) async => navigateToMenu(),
+                //   child:
+                value;
+            // );
           },
         );
       },

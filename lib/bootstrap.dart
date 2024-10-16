@@ -1,9 +1,13 @@
 import 'dart:async';
-import 'dart:developer';
+
+// import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
+import 'package:logger/logger.dart';
+
+final Logger _logger = Logger();
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -11,12 +15,14 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
     super.onChange(bloc, change);
-    log('onChange(${bloc.runtimeType}, $change)');
+    // TODO(ChatGPT): qual seria o melhor log aqui? info, warning, error, etc?
+    _logger.i('onChange(${bloc.runtimeType}, $change)');
   }
 
   @override
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
+    // TODO(ChatGPT): qual seria o melhor log aqui? info, warning, error, etc?
+    _logger.e('onError(${bloc.runtimeType}, $error, $stackTrace)');
     super.onError(bloc, error, stackTrace);
   }
 }
@@ -27,7 +33,8 @@ typedef BootstrapBuilder = FutureOr<Widget> Function(
 
 Future<void> bootstrap(BootstrapBuilder builder) async {
   FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
+    // TODO(ChatGPT): qual seria o melhor log aqui? info, warning, error, etc?
+    _logger.e(details.exceptionAsString(), stackTrace: details.stack);
   };
 
   Bloc.observer = const AppBlocObserver();
