@@ -33,50 +33,48 @@ class SuperDashApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      onPopInvoked: (reason) {
-        backToMenu.call();
-        return;
-      },
-      child: SDAppLifecycleObserver(
-        child: MultiRepositoryProvider(
-          providers: [
-            RepositoryProvider<AudioController>(
-              create: (context) {
-                final lifecycleNotifier =
-                    context.read<ValueNotifier<AppLifecycleState>>();
-                return audioController
-                  ..attachLifecycleNotifier(lifecycleNotifier);
-              },
-              lazy: false,
-            ),
-            RepositoryProvider<SettingsController>.value(
-              value: settingsController,
-            ),
-            RepositoryProvider<ShareController>.value(
-              value: shareController,
-            ),
-            RepositoryProvider<AuthenticationRepository>.value(
-              value: authenticationRepository..signInAnonymously(),
-            ),
-            RepositoryProvider<LeaderboardRepository>.value(
-              value: leaderboardRepository,
-            ),
-          ],
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Super Dash',
-            theme: ThemeData(
-              textTheme: AppTextStyles.textTheme,
-            ),
-            supportedLocales: AppLocalizations.supportedLocales,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            home: isTesting
-                ? const MapTesterView()
-                : GameIntroPage(backToMenu: backToMenu),
+    return
+        // PopScope(
+        //   onPopInvoked: (reason) {
+        //     backToMenu.call();
+        //     return;
+        //   },
+        //   child:
+        SDAppLifecycleObserver(
+      child: MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider<AudioController>(
+            create: (context) {
+              final lifecycleNotifier = context.read<ValueNotifier<AppLifecycleState>>();
+              return audioController..attachLifecycleNotifier(lifecycleNotifier);
+            },
+            lazy: false,
           ),
+          RepositoryProvider<SettingsController>.value(
+            value: settingsController,
+          ),
+          RepositoryProvider<ShareController>.value(
+            value: shareController,
+          ),
+          RepositoryProvider<AuthenticationRepository>.value(
+            value: authenticationRepository..signInAnonymously(),
+          ),
+          RepositoryProvider<LeaderboardRepository>.value(
+            value: leaderboardRepository,
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Super Dash',
+          theme: ThemeData(
+            textTheme: AppTextStyles.textTheme,
+          ),
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          home: isTesting ? const MapTesterView() : GameIntroPage(backToMenu: backToMenu),
         ),
       ),
+      // ),
     );
   }
 }
